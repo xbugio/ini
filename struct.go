@@ -352,6 +352,8 @@ func (s *Section) mapToField(val reflect.Value, isStrict bool, sectionIndex int,
 			if err = setWithProperType(tpField.Type, key, field, delim, allowShadow, isStrict); err != nil {
 				return fmt.Errorf("set field %q: %v", fieldName, err)
 			}
+		} else if isStrict {
+			return fmt.Errorf("set field %q: %v", fieldName, err)
 		}
 	}
 	return nil
